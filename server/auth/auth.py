@@ -47,7 +47,7 @@ async def get_current_user(token: str = Depends(oauth2_scheme), db: Session = De
     except JWTError:
         print(JWTError)
         raise credentials_exception
-    user = db.query(ManagerDB).filter(ManagerDB.email == email).first()
+    user = db.query(ManagerDB).filter(ManagerDB.email == email).one_or_none()
     if not user:
         raise credentials_exception
     return user

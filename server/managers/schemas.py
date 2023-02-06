@@ -4,7 +4,6 @@ from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.sql import func
 from sqlalchemy_utils import EmailType, PasswordType
 from server.database import DBBase, engine
-from sqlalchemy.orm import Session
 
 # manager_tb = sqlalchemy.Table(
 #     'Manager',

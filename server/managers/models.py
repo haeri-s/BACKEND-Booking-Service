@@ -1,5 +1,4 @@
 from pydantic import BaseModel, EmailStr
-import sqlalchemy_utils
 from uuid import UUID
 
 class ManagerBase(BaseModel):
@@ -8,12 +7,18 @@ class ManagerBase(BaseModel):
     mobile: str | None
 
 
-class ManagerForm(ManagerBase):
+class ManagerCreateForm(ManagerBase):
     password: str
+
+class ManagerUpdateForm(ManagerBase):
+    id: UUID
+
+class MyInfoUpdateForm(ManagerBase):
+    new_password: str | None
+
 
 class Manager(ManagerBase):
     id: UUID
 
     class Config:
         orm_mode = True
-        

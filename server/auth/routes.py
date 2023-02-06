@@ -2,8 +2,8 @@ from fastapi import APIRouter, Depends, HTTPException, status, Header
 # from server.managers.db import manager_tb
 from fastapi.security import OAuth2PasswordRequestForm
 from server.database import database, get_db
-from server.managers.models import Manager, ManagerForm
-from server.utils import CustomHTTPException
+from server.managers.models import Manager, ManagerCreateForm
+from server.utils.exceptions import CustomHTTPException
 import uuid
 from server.auth.models import LoginForm, LoginToken, Token, TokenData
 from server.managers.schemas import ManagerDB
