@@ -1,19 +1,46 @@
 from pydantic import BaseModel, EmailStr
 from uuid import UUID
+from datetime import datetime
 
-class SubscriptionBase(BaseModel):
+class UserBase(BaseModel):
     email: EmailStr
     name: str | None
     mobile: str | None
-    mobile_contry_code: str = '82'
+    mobile_country_code: str = '82'
+
+class SubscriptionForm(UserBase):
     is_marketing: bool = False
 
 class SubscriptionDeleteForm(BaseModel):
-    id: UUID
-    is_deleted: bool = False
+    email: EmailStr
 
-class Subscription(SubscriptionBase):
+class SubsciptionUser(UserBase):
     id: UUID
 
     class Config:
         orm_mode = True
+
+class SubscriptionWithUser(BaseModel):
+    id: int
+    created_at: datetime
+    updated_at: datetime | None
+    user: SubsciptionUser
+
+    class Config:
+        orm_mode = True
+
+class Subscription(BaseModel):
+    id: int
+    created_at: datetime
+    updated_at: datetime | None
+
+    class Config:
+        orm_mode = True
+
+class User(UserBase):
+    id: UUID
+    subscribes: list[Subscription] | None
+
+    class Config:
+        orm_mode = True
+    

@@ -21,7 +21,7 @@ from server.database import DBBase, engine
 # )
 
 class ManagerDB(DBBase):
-    __tablename__ = 'Manager'
+    __tablename__ = 'manager'
 
     id = Column(UUID(as_uuid=True), primary_key=True)
     email = Column(EmailType, unique=True)
