@@ -4,6 +4,7 @@ from server.database import database, get_db
 from server.auth.routes import router as authRouter
 from server.managers.routes import router as managerRouter
 from server.subscriptions.routes import router as subscriptionRouter
+from server.services.routes import router as serviceRouter
 from fastapi.encoders import jsonable_encoder
 from fastapi.exceptions import RequestValidationError, HTTPException
 from fastapi.responses import JSONResponse
@@ -30,3 +31,4 @@ async def shutdown():
 app.include_router(authRouter)
 app.include_router(managerRouter)
 app.include_router(subscriptionRouter)
+app.include_router(serviceRouter)

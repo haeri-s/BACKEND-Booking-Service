@@ -6,7 +6,6 @@ class ManagerBase(BaseModel):
     name: str | None
     mobile: str | None
 
-
 class ManagerCreateForm(ManagerBase):
     password: str
 
