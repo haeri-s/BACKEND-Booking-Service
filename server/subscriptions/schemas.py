@@ -10,10 +10,10 @@ class UserDB(DBBase):
     __tablename__ = 'user'
 
     id = Column(UUID(as_uuid=True), primary_key=True)
-    email = Column(EmailType, unique=True)
+    email = Column(EmailType)
     name = Column(sqlalchemy.String)
     mobile_country_code = Column(sqlalchemy.String(3), default="82")
-    mobile = Column(sqlalchemy.String)
+    mobile = Column(sqlalchemy.String, unique=True)
     created_at = Column(sqlalchemy.DateTime(timezone=True), server_default=func.now())
     updated_at = Column(sqlalchemy.DateTime(timezone=True), onupdate=func.now())
 
