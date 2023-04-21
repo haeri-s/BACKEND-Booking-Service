@@ -8,7 +8,7 @@ from server.config import get_settings
 from server.auth.models import LoginForm, TokenData
 from sqlalchemy.orm import Session
 from server.database import get_db
-from server.managers.schemas import ManagerDB
+from server.accounts.schemas import AccountDB
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/login")
 
@@ -28,7 +28,7 @@ def create_access_token(data: dict, expires_delta: timedelta | None = None):
         expire = datetime.now() + timedelta(days=jwt_setting.get('expire_days'))
     to_encode.update({"exp": expire})
     encoded_jwt = jwt.encode(to_encode, secret_key, algorithm=algorithm)
-    return {'access_token': encoded_jwt, 'expire': expire}
+    return {'accessToken': encoded_jwt, 'expire': expire}
 
 async def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)):
     x_token = token
@@ -47,7 +47,7 @@ async def get_current_user(token: str = Depends(oauth2_scheme), db: Session = De
     except JWTError:
         print(JWTError)
         raise credentials_exception
-    user = db.query(ManagerDB).filter(ManagerDB.email == email).one_or_none()
+    user = db.query(AccountDB).filter(AccountDB.email == email).one_or_none()
     if not user:
         raise credentials_exception
     return user

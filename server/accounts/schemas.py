@@ -5,8 +5,8 @@ from sqlalchemy.sql import func
 from sqlalchemy_utils import EmailType, PasswordType
 from server.database import DBBase, engine
 
-# manager_tb = sqlalchemy.Table(
-#     'Manager',
+# account_tb = sqlalchemy.Table(
+#     'Account',
 #     metadata,
 #     sqlalchemy.Column("id", UUID(as_uuid=True), primary_key=True),
 #     sqlalchemy.Column("email", EmailType, unique=True),
@@ -20,8 +20,8 @@ from server.database import DBBase, engine
 #     sqlalchemy.Column("updated_at", sqlalchemy.DateTime(timezone=True), onupdate=func.now()),
 # )
 
-class ManagerDB(DBBase):
-    __tablename__ = 'manager'
+class AccountDB(DBBase):
+    __tablename__ = 'account'
 
     id = Column(UUID(as_uuid=True), primary_key=True)
     email = Column(EmailType, unique=True)
@@ -31,7 +31,8 @@ class ManagerDB(DBBase):
         deprecated=["md5_crypt"]
     ))
     mobile = Column(sqlalchemy.String)
+    role= Column(sqlalchemy.VARCHAR(15), comment="역할")
     created_at = Column(sqlalchemy.DateTime(timezone=True), server_default=func.now())
     updated_at = Column(sqlalchemy.DateTime(timezone=True), onupdate=func.now())
 
-ManagerDB.metadata.create_all(engine)
+AccountDB.metadata.create_all(engine)

@@ -26,6 +26,7 @@ class ServiceForm(BaseModel):
     duration_unit: str | None
 
     is_disabled: bool = False
+    is_elaerning: bool = True
     is_deleted: bool = False
 
 
@@ -40,6 +41,7 @@ class Service(BaseModel):
     duration_unit: str | None
 
     is_disabled: bool
+    is_elaerning: bool
     is_deleted: bool
 
     class Config:

@@ -1,11 +1,11 @@
 from pydantic import BaseModel, EmailStr
-from server.managers.models import Manager
+from server.accounts.models import Account
 from datetime import datetime
 
 class Token(BaseModel):
-    access_token: str
+    accessToken: str
     expire: datetime
-    token_type: str = 'bearer'
+    tokenType: str = 'bearer'
 
 class TokenData(BaseModel):
     email: EmailStr
@@ -14,7 +14,7 @@ class TokenData(BaseModel):
 class LoginForm(BaseModel):
     username: EmailStr
     password: str
-    grant_type: str | None
+    # grant_type: str | None
 
 class LoginToken(Token):
-    user: Manager
+    user: Account

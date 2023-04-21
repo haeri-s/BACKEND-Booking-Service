@@ -28,7 +28,8 @@ class ServiceDB(DBBase):
     duration = Column(sqlalchemy.Integer, default=0, comment='소요기간')
     duration_unit = Column(sqlalchemy.VARCHAR(5), comment='소요기간 단위(일/시간)')
 
-    is_disabled = Column(sqlalchemy.Boolean, default=False, comment='예약가능여부')
+    is_disabled = Column(sqlalchemy.Boolean, default=False, comment='문의예약여부')
+    is_elaerning = Column(sqlalchemy.Boolean, default=True, comment='E-Learning 가능여부')
     is_deleted = Column(sqlalchemy.Boolean, default=False, comment='삭제여부')
 
     created_at = Column(sqlalchemy.DateTime(timezone=True), server_default=func.now())

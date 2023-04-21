@@ -10,7 +10,7 @@ from server.utils.validates import validate_password, validate_mobile
 from server.utils.exceptions import CustomHTTPException
 from sqlalchemy_utils.types.phone_number import PhoneNumberParseException
 import uuid
-from server.managers.models import Manager
+from server.accounts.models import Account
 from server.utils.models import StatusModel
 
 router = APIRouter(
@@ -21,7 +21,7 @@ router = APIRouter(
 
 @router.get('/', response_model=list[SubscriptionWithUser], description='구독한 계정 목록 조회')
 def get_subscriptions(db: Session = Depends(get_db), 
-    # current_user: Manager = Depends(get_current_user)
+    # current_user: Account = Depends(get_current_user)
 ):
     subscriptions = db.query(UserSubscribeDB).all()
     return subscriptions
